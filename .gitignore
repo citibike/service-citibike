@@ -1,0 +1,4 @@
+node_modules
+logs
+.vscode
+src/config/notToCommit.js

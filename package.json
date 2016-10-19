@@ -1,0 +1,52 @@
+{
+  "name": "node_citibike",
+  "version": "1.0.0",
+  "description": "citibike service ",
+  "main": "index.js",
+  "dependencies": {
+    "argify": "0.0.3",
+    "boom": "^2.8.0",
+    "bunyan": "^1.8.1",
+    "cfenv": "^1.0.3",
+    "config": "^1.14.0",
+    "config-local": "0.0.1",
+    "debug": "^2.2.0",
+    "glob": "^5.0.12",
+    "global-tunnel": "^1.2.0",
+    "good": "^6.2.0",
+    "good-console": "^6.1.2",
+    "good-file": "^5.0.1",
+    "h2o2": "^5.4.0",
+    "hapi": "^15.1.1",
+    "hapi-swagger": "^7.2.0",
+    "inert": "^4.0.2",
+    "joi": "^9.1.0",
+    "lodash": "^3.10.0",
+    "lout": "^6.2.3",
+    "lru-cache": "^2.6.5",
+    "mongoose": "^4.6.4",
+    "node-cron": "^1.1.2",
+    "q": "^1.4.1",
+    "request": "^2.75.0",
+    "vision": "^4.1.0",
+    "wreck": "^10.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gunjank/node_citibike.git"
+  },
+  "author": "gunjank",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gunjank/node_citibike/issues"
+  },
+  "engines": {
+    "node": "4.6.x",
+    "npm": "2.15.x"
+  },
+  "homepage": "https://github.com/gunjank/node_citibike#readme"
+}
