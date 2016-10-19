@@ -142,10 +142,10 @@ module.exports = {
         replicationId: oldestReplicationId
       }, function (err, removed) {
         if (err) {
-          response.message = "Unable to delete existing station status ";
+          response.message = "Unable to delete existing system alerts ";
         } else {
 
-          response.message = "successfully delete existing station status ";
+          response.message = "successfully deleted existing system alerts ";
         }
         latestFeed.save(function (err) {
           if (err) {

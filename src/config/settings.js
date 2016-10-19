@@ -31,7 +31,7 @@ let settings = {
     system_information: 'en/system_information.json',
     station_status: 'en/station_status.json',
     station_information: 'en/station_information.json',
-    system_alerts: 'en/system_alerts',
+    system_alerts: 'en/system_alerts.json',
     mongoUrl: mLabServiceCredentials()
 }
 
