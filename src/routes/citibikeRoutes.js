@@ -74,4 +74,23 @@ module.exports = function (server, options) {
 
 
 
+
+  server.route({
+    method: 'post',
+    path: '/v1/addressNearBy',
+    config: {
+      handler: citibikeHandler.addressNearBy,
+      description: 'GET gbfsFeed for  gbfs latest system alerts',
+      notes: 'Returns a list system alerts',
+      tags: ['api'],
+      validate: {
+        // params: {
+        //   faqId: Joi.string().required().description('the id for the faq item')
+        // }
+      }
+    }
+  });
+
+
+
 }
