@@ -4,7 +4,6 @@ var mongoose = require('../dao/db');
 
 let schema = new mongoose.Schema({
 
-
     station_id: String,
     num_bikes_available: Number,
     num_bikes_disabled: Number,
@@ -23,9 +22,6 @@ let schema = new mongoose.Schema({
     region_id: Number,
     rental_methods: [],
     capacity: Number,
-    loc: String,
-
-
-
+    loc: []
 });
 module.exports = schema;

@@ -59,6 +59,7 @@ module.exports = {
       let StationSchema = mongoose.model("StationCollection", stationSchema);
       let errorFound = false;
       for (let station of data.data.stations) {
+        station.loc = [station.lon, station.lat]; //required to match user address
         let query = {
             station_id: station.station_id
           },
@@ -130,48 +131,6 @@ module.exports = {
   },
 
 
-
-
-
-
-
-
-  // gbfsStationStatus: function (request, reply) {
-  //   // log.info("citibike handler method called - gbfsStationStatus ...");
-  //   let response = new Response;
-  //   let url = settings.gbfsBase + settings.station_status + "?nocache=" + new Date();;
-  //   citibike.gbfs(null, url, function (data) {
-  //     // log.info("Getting gbfsStationStatus data  ...");
-
-  //     let StationStatus = mongoose.model("StationStatus", stationStatus);
-  //     data.replicationId = stationStatusCurReplication = util.getNextPossibleNumber(stationStatusCurReplication, stationStatusMaxRplication, 1);
-  //     let oldestReplicationId = util.getNextPossibleNumber(stationStatusCurReplication, stationStatusMaxRplication, 1);
-  //     let latestFeed = new StationStatus(data);
-  //     log.info(oldestReplicationId + " deleted --*******-- added " + data.replicationId);
-
-  //     StationStatus.remove({
-  //       replicationId: oldestReplicationId
-  //     }, function (err, removed) {
-  //       if (err) {
-  //         response.message = "Unable to delete existing station status ";
-  //       } else {
-
-  //         response.message = "successfully delete existing station status ";
-  //       }
-  //       latestFeed.save(function (err) {
-  //         if (err) {
-  //           response.status = response.failure;
-  //           response.message = response.message + ", Unable to saved latest data into DB";
-  //         } else {
-  //           response.status = response.success;
-  //           response.message = response.message + ", Saved latest data into DB";
-  //         }
-  //         reply(response);
-  //       });
-  //     });
-  //   });
-  // },
-
   gbfsSystemAlerts: function (request, reply) {
 
     let response = new Response;
@@ -235,8 +194,6 @@ module.exports = {
 
   //---- below are internal db calls not for citibike api
   addressNearBy: function (request, reply) {
-
-
 
     let StationStatus = mongoose.model("StationStatus", stationStatus);
 
