@@ -45,10 +45,6 @@ module.exports = {
   },
 
 
-
-
-
-
   gbfsStationInformation: function (request, reply) {
 
     let response = new Response;
