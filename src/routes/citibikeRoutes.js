@@ -18,9 +18,7 @@ module.exports = function (server, options) {
       notes: 'Returns a list of gbfs urls',
       tags: ['api'],
       validate: {
-        // params: {
-        //   faqId: Joi.string().required().description('the id for the faq item')
-        // }
+
       }
     }
   });
@@ -50,9 +48,7 @@ module.exports = function (server, options) {
       notes: 'Returns a list station with current information',
       tags: ['api'],
       validate: {
-        // params: {
-        //   faqId: Joi.string().required().description('the id for the faq item')
-        // }
+
       }
     }
   });
@@ -65,9 +61,7 @@ module.exports = function (server, options) {
       notes: 'Returns a list system alerts',
       tags: ['api'],
       validate: {
-        // params: {
-        //   faqId: Joi.string().required().description('the id for the faq item')
-        // }
+
       }
     }
   });

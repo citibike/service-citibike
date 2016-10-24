@@ -11,7 +11,7 @@ let uristring =
     process.env.MONGOHQ_URL ||
     settings.mongoUrl;
 
-log.info("mongourl lab url " + process.env.MONGOLAB_URI + "--mongo hq  " + process.env.MONGOHQ_URL);
+log.info("mongourl lab url " + process.env.MONGOLAB_URI + "--mongo hq  " + process.env.MONGOHQ_URL + "  --settings.mongoUrl -- " + settings.mongoUrl);
 
 // The http server will listen to an appropriate port, or default to
 // port 5000.

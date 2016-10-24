@@ -1,21 +1,34 @@
 'use strict';
 
-// var request = require('request');
-// const settings = require('../config/settings');
+var request = require('request');
+//const settings = require('../config/settings');
 
-// let userServiceHandler = {
+let cronJobHandler = {
 
-//     updateInsertUser: function (payloadData) {
-//         request.post({
-//             url: settings.userService,
-//             method: 'POST',
-//             json: payloadData
-//         }, function (error, response, body) {
-//             if (error) log.error("User update/insert failed, deails - " + error);
-//             if (response) log.info("User update/insert service response status message is " + response.statusMessage);
-//             // if (body) log.debug("User update/insert service body -  " + body);
+    gbfsStationInfo: function () {
+        request({
+            url: 'https://service-citibike.cfapps.io/v1/gbfsStationInfo',
+            method: 'GET'
 
-//         });
-//     }
-// }
-// module.exports = userServiceHandler;
+        }, function (error, response, body) {
+            if (error) log.info(" gbfsStationInfo service failed, deails - " + error);
+            if (response) log.info(" gbfsStationInfo service response status code : status message  " + response.statusCode + ":" + response.statusMessage);
+
+
+        });
+    },
+    gbfsStationStatus: function () {
+        request({
+            url: 'https://service-citibike.cfapps.io/v1/gbfsStationStatus',
+            method: 'GET'
+
+        }, function (error, response, body) {
+            if (error) log.info("gbfsStationStatus service failed, deails - " + error);
+            if (response) log.info("gbfsStationStatus service response status code : status message  " + response.statusCode + ":" + response.statusMessage);
+
+
+        });
+    }
+
+}
+module.exports = cronJobHandler;

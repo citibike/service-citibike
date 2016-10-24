@@ -4,17 +4,10 @@ var mongoose = require('../dao/db');
 
 let schema = new mongoose.Schema({
 
-    last_updated: String,
+    last_updated: Number,
     ttl: Number,
-    replicationId: Number,
     data: {
-        alerts: [{
-            alert_id: String,
-            type: String,
-            station_ids: [],
-            summary: String,
-            last_updated: Number
-        }]
+        alerts: []
     }
 
 

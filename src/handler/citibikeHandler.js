@@ -4,8 +4,6 @@ let Citibike = require('../lib/Citibike');
 let citibike = new Citibike();
 let mongoose = require('../dao/db');
 let feedSchema = require('../model/feedSchema');
-let stationInfo = require('../model/stationInformationSchema');
-let stationStatus = require('../model/stationStatusSchema');
 let systemAlerts = require('../model/systemAlertsSchema');
 let stationSchema = require('../model/stationSchema');
 let Response = require('../model/response');
@@ -72,7 +70,6 @@ module.exports = {
             throw error
           }
         });
-
       }
 
       if (errorFound) {
@@ -91,7 +88,6 @@ module.exports = {
     let response = new Response;
     let url = settings.gbfsBase + settings.station_status + "?nocache=" + new Date();
     citibike.gbfs(null, url, function (data) {
-
 
       let StationSchema = mongoose.model("StationCollection", stationSchema);
       let errorFound = false;
@@ -112,7 +108,6 @@ module.exports = {
             throw error
           }
         });
-
       }
 
       if (errorFound) {
@@ -128,19 +123,14 @@ module.exports = {
 
 
   gbfsSystemAlerts: function (request, reply) {
-
     let response = new Response;
     let url = settings.gbfsBase + settings.system_alerts + "?nocache=" + new Date();;
     citibike.gbfs(null, url, function (data) {
       let SystemAlerts = mongoose.model("SystemAlerts", systemAlerts);
-      data.replicationId = systemAlertsCurReplication = util.getNextPossibleNumber(systemAlertsCurReplication, systemAlertsMaxRplication, 1);
-      let oldestReplicationId = util.getNextPossibleNumber(systemAlertsCurReplication, systemAlertsMaxRplication, 1);
       let latestFeed = new SystemAlerts(data);
-      log.info(oldestReplicationId + " deleted --*******-- added " + data.replicationId);
 
-      SystemAlerts.remove({
-        replicationId: oldestReplicationId
-      }, function (err, removed) {
+
+      SystemAlerts.remove({}, function (err, removed) {
         if (err) {
           response.message = "Unable to delete existing system alerts ";
         } else {
@@ -164,29 +154,7 @@ module.exports = {
 
 
 
-  gbfsSystemRegions: function (request, reply) {
-    log.info("citibike handler method called - gbfsSystemRegions ...");
-    let url = settings.gbfsBase + settings.gbfsSystemRegions + "?nocache=" + new Date();;
-    citibike.gbfs(null, url, function (data) {
-      log.info("Getting gbfsSystemRegions data  ...");
-      // console.log(data);
-      let FeedModel = mongoose.model("UrlFeeds", feedSchema);
-      let latestFeed = new FeedModel(data);
 
-      FeedModel.remove({}, function (err, removed) {
-        if (err) {
-          console.log('Error on delete all existing feeds for url !');
-        } else {
-          console.log('deleted all existing url feed!' + removed);
-        }
-        latestFeed.save(function (err) {
-          if (err) console.log('Error on save!')
-
-          reply(data);
-        });
-      });
-    });
-  },
 
   //---- below are internal db calls not for citibike api
   addressNearBy: function (request, reply) {

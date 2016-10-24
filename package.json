@@ -4,15 +4,12 @@
   "description": "citibike service ",
   "main": "index.js",
   "dependencies": {
-    "argify": "0.0.3",
     "boom": "^2.8.0",
     "bunyan": "^1.8.1",
     "cfenv": "^1.0.3",
     "config": "^1.14.0",
     "config-local": "0.0.1",
     "debug": "^2.2.0",
-    "glob": "^5.0.12",
-    "global-tunnel": "^1.2.0",
     "good": "^6.2.0",
     "good-console": "^6.1.2",
     "good-file": "^5.0.1",
@@ -28,8 +25,7 @@
     "node-cron": "^1.1.2",
     "q": "^1.4.1",
     "request": "^2.75.0",
-    "vision": "^4.1.0",
-    "wreck": "^10.0.0"
+    "vision": "^4.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

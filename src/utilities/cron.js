@@ -1,19 +1,19 @@
 'use strict';
-const Wreck = require('wreck');
+
+
 
 
 var cron = require('node-cron');
+var cronJobHandler = require('../handler/cronJobHandler');
 
-var stationStatus = cron.schedule('*/5 * * * * *', function () {
-    //let baseUrl = "http://localhost:3000"
-    let baseUrl = "http://service-citibike.cfapps.io"
+var stationInfo = cron.schedule('0 15 * * *', function () {
+    cronJobHandler.gbfsStationInfo();
 
-    // Wreck.get(baseUrl + '/v1/gbfsStationStatus', (err, res, payload) => {
-    //     if (err) log.info("error calling gbfsStationStatus service, more details - " + err);
-    //     if (res) log.info("response received from gbfsStationStatus service, call succssful");
-    // });
-
+});
+var stationStatus = cron.schedule('1-59 * * * *', function () {
+    cronJobHandler.gbfsStationStatus();
 
 });
 
+stationInfo.start();
 stationStatus.start();
