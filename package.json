@@ -1,5 +1,5 @@
 {
-  "name": "node_citibike",
+  "name": "service-citibike",
   "version": "1.0.0",
   "description": "citibike service ",
   "main": "index.js",
@@ -37,16 +37,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gunjank/node_citibike.git"
+    "url": "git+https://github.com/gunjank/service-citibike.git"
   },
   "author": "gunjank",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gunjank/node_citibike/issues"
+    "url": "https://github.com/gunjank/service-citibike/issues"
   },
   "engines": {
     "node": "4.6.x",
     "npm": "2.15.x"
   },
-  "homepage": "https://github.com/gunjank/node_citibike#readme"
+  "homepage": "https://github.com/gunjank/service-citibike#readme"
 }
