@@ -1,6 +1,6 @@
 'use strict';
 
-
+const Joi = require('joi');
 let citibikeHandler = require('../handler/citibikeHandler');
 
 
@@ -74,13 +74,14 @@ module.exports = function (server, options) {
     path: '/v1/addressNearBy',
     config: {
       handler: citibikeHandler.addressNearBy,
-      description: 'GET gbfsFeed for  gbfs latest system alerts',
-      notes: 'Returns a list system alerts',
+      description: 'Match given cordinates with available data',
+      notes: 'Returns a list sorted cordinates stations',
       tags: ['api'],
       validate: {
-        // params: {
-        //   faqId: Joi.string().required().description('the id for the faq item')
-        // }
+        payload: Joi.object().keys({
+          lat: Joi.number().required(),
+          lon: Joi.number().required()
+        })
       }
     }
   });

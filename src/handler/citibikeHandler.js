@@ -158,37 +158,31 @@ module.exports = {
 
   //---- below are internal db calls not for citibike api
   addressNearBy: function (request, reply) {
-
-    let StationStatus = mongoose.model("StationStatus", stationStatus);
-
-    StationStatus.find({
-      projectName: 'name'
-    }).sort
-
-
-
-
-    StationStatus.remove({
-      replicationId: oldestReplicationId
-    }, function (err, removed) {
-      if (err) {
-        response.message = "Unable to delete existing station status ";
-      } else {
-
-        response.message = "successfully delete existing station status ";
+      let response = new Response;
+      let StationSchema = mongoose.model("stationcollections", stationSchema);
+      var qr = {
+        loc: {
+          '$near': {
+            '$geometry': {
+              type: 'Point',
+              coordinates: [request.payload.lon, request.payload.lat] //longitude,latitude
+            }
+          }
+        }
       }
-      latestFeed.save(function (err) {
-        if (err) {
+      StationSchema.find(qr, function (error, result) {
+        if (error) {
           response.status = response.failure;
-          response.message = response.message + ", Unable to saved latest data into DB";
+          response.message = response.message + ", Unable to get data from DB";
         } else {
           response.status = response.success;
-          response.message = response.message + ", Saved latest data into DB";
+          response.message = "Got latest data from DB";
+          response.data = result;
         }
         reply(response);
-      });
-    });
-  },
+      }).limit(5);
 
 
+    }
+    //end of handler methods
 }
