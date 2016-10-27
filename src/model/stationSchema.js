@@ -22,6 +22,9 @@ let schema = new mongoose.Schema({
     region_id: Number,
     rental_methods: [],
     capacity: Number,
-    loc: []
+    loc: {
+        type: [Number],
+        index: '2dsphere'
+    },
 });
 module.exports = schema;
