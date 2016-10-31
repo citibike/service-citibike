@@ -15,6 +15,9 @@ Response.prototype.message = function (message) {
 Response.prototype.data = function (data) {
     this.data = data;
 }
+Response.prototype.payload = function (payload) {
+    this.payload = payload;
+}
 Response.prototype.success = "Success";
 Response.prototype.failure = "Failure";
 

@@ -176,6 +176,7 @@ module.exports = {
           response.message = response.message + ", Unable to get data from DB";
         } else {
           response.status = response.success;
+          response.payload = request.payload;
           response.message = "Got latest data from DB";
           response.data = result;
         }
