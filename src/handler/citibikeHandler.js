@@ -13,6 +13,7 @@ let settings = require('../config/settings');
 module.exports = {
 
   gbfsFeed: function (request, reply) {
+    let response = new Response;
     log.info("citibike handler method called - gbfsFeed ...");
     let url = settings.gbfsBase + settings.gbfsFeed + "?nocache=" + new Date();;
     citibike.gbfs(null, url, function (data) {
@@ -23,13 +24,19 @@ module.exports = {
 
       FeedModel.remove({}, function (err, removed) {
         if (err) {
-          console.log('Error on delete all existing feeds for url !');
+          response.message = "Unable to delete existing feeds url";
         } else {
-          console.log('deleted all existing url feed!' + removed);
+          response.message = "successfully deleted existing feeds url ";
         }
         latestFeed.save(function (err) {
-          if (err) console.log('Error on save!')
-
+          if (err) {
+            console.log('Error on save!')
+            response.status = response.failure;
+            response.message = response.message + ", Unable to save latest data into DB for feeds url";
+          } else {
+            response.status = response.success;
+            response.message = response.message + ", Saved latest data into DB for feeds url";
+          }
           reply(data);
         });
       });
@@ -65,7 +72,7 @@ module.exports = {
       }
       if (errorFound) {
         response.status = response.failure;
-        response.message = response.message + ", Unable to saved all  data into DB";
+        response.message = response.message + ", Unable to save all  data into DB";
       } else {
         response.status = response.success;
         response.message = " Saved latest data into DB";
@@ -103,7 +110,7 @@ module.exports = {
 
       if (errorFound) {
         response.status = response.failure;
-        response.message = response.message + ", Unable to saved all  data into DB";
+        response.message = response.message + ", Unable to save all  data into DB";
       } else {
         response.status = response.success;
         response.message = " Saved latest data into DB";
@@ -130,7 +137,7 @@ module.exports = {
         latestFeed.save(function (err) {
           if (err) {
             response.status = response.failure;
-            response.message = response.message + ", Unable to saved latest data into DB";
+            response.message = response.message + ", Unable to save latest data into DB";
           } else {
             response.status = response.success;
             response.message = response.message + ", Saved latest data into DB";
