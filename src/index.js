@@ -43,10 +43,10 @@ server.connection({
   port: settings.port
 
 });
-//debug('added port: ', config.port);
+
 let swaggerOptions = {
   info: {
-    'title': 'CITIBIKE Service API Documentation',
+    'title': 'service-citibike API Documentation',
     'version': Pack.version
   }
 };

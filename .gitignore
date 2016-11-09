@@ -1,5 +1,4 @@
 node_modules
-!node_modules/hapi-swagger/lib/builder.js
 logs
 .vscode
 src/config/notToCommit.js

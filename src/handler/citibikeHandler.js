@@ -18,10 +18,9 @@ module.exports = {
     let url = settings.gbfsBase + settings.gbfsFeed + "?nocache=" + new Date();;
     citibike.gbfs(null, url, function (data) {
       log.info("Getting gbfsFeed data  ...");
-      // console.log(data);
       let FeedModel = mongoose.model("UrlFeeds", feedSchema);
       let latestFeed = new FeedModel(data);
-
+      response.data = data;
       FeedModel.remove({}, function (err, removed) {
         if (err) {
           response.message = "Unable to delete existing feeds url";
@@ -36,8 +35,9 @@ module.exports = {
           } else {
             response.status = response.success;
             response.message = response.message + ", Saved latest data into DB for feeds url";
+
           }
-          reply(data);
+          reply(response);
         });
       });
     });
