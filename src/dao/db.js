@@ -11,20 +11,18 @@ let uristring =
     process.env.MONGOHQ_URL ||
     settings.mongoUrl;
 
-log.info("mongourl lab url " + process.env.MONGOLAB_URI + "--mongo hq  " + process.env.MONGOHQ_URL + "  --settings.mongoUrl -- " + settings.mongoUrl);
-
-// The http server will listen to an appropriate port, or default to
-// port 5000.
-let theport = process.env.PORT || 5000;
+//log.info("mongourl lab url " + process.env.MONGOLAB_URI + "--mongo hq  " + process.env.MONGOHQ_URL + "  --settings.mongoUrl -- " + settings.mongoUrl);
 
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
-mongoose.Promise = global.Promise; //this is required to avoid deprication woarning from mongoose 
+mongoose.Promise = global.Promise; //this is required to avoid deprication warning from mongoose 
 mongoose.connect(uristring, function (err, res) {
     if (err) {
-        console.log('ERROR connecting to: ' + uristring + '. ' + err);
+        //console.log('ERROR connecting to: ' + uristring + '. ' + err);//only for debug
+        console.log('ERROR connecting to: DB ' + '. ' + err);
     } else {
-        console.log('Succeeded connected to: ' + uristring);
+        // console.log('Succeeded connected to: ' + uristring);//only for debug
+        console.log('Succeeded connected to: DB');
     }
 });
 module.exports = mongoose;

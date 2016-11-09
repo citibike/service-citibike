@@ -3,7 +3,6 @@
 var mongoose = require('../dao/db');
 
 let schema = new mongoose.Schema({
-
     last_updated: String,
     ttl: Number,
     data: {
@@ -13,7 +12,6 @@ let schema = new mongoose.Schema({
                 url: String
             }]
         }
-
     }
 });
 module.exports = schema;

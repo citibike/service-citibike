@@ -8,13 +8,7 @@ let systemAlerts = require('../model/systemAlertsSchema');
 let stationSchema = require('../model/stationSchema');
 let Response = require('../model/response');
 let settings = require('../config/settings');
-let util = require('../utilities/utility');
-let stationStatusMaxRplication = 5;
-let stationStatusCurReplication = 1;
-let stationInfoMaxRplication = 3;
-let stationInfoCurReplication = 1;
-let systemAlertsMaxRplication = 3;
-let systemAlertsCurReplication = 1;
+
 //exports
 module.exports = {
 
@@ -48,8 +42,6 @@ module.exports = {
     let response = new Response;
     let url = settings.gbfsBase + settings.station_information + "?nocache=" + new Date();
     citibike.gbfs(null, url, function (data) {
-
-
       let StationSchema = mongoose.model("StationCollection", stationSchema);
       let errorFound = false;
       for (let station of data.data.stations) {
@@ -71,7 +63,6 @@ module.exports = {
           }
         });
       }
-
       if (errorFound) {
         response.status = response.failure;
         response.message = response.message + ", Unable to saved all  data into DB";
@@ -134,7 +125,6 @@ module.exports = {
         if (err) {
           response.message = "Unable to delete existing system alerts ";
         } else {
-
           response.message = "successfully deleted existing system alerts ";
         }
         latestFeed.save(function (err) {
@@ -150,11 +140,6 @@ module.exports = {
       });
     });
   },
-
-
-
-
-
 
   //---- below are internal db calls not for citibike api
   addressNearBy: function (request, reply) {

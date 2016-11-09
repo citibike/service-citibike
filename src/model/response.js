@@ -1,11 +1,8 @@
 'use strict';
 
-
 var Response = function () {
 
 }
-
-
 Response.prototype.status = function (status) {
     this.status = status;
 }
@@ -20,9 +17,4 @@ Response.prototype.payload = function (payload) {
 }
 Response.prototype.success = "Success";
 Response.prototype.failure = "Failure";
-
-
-
-
-
 module.exports = Response;

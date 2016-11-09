@@ -89,6 +89,4 @@ Citibike.prototype.gbfs = function (params, url, callback) {
     });
     return this;
 }
-
-
 module.exports = Citibike;

@@ -1,27 +1,23 @@
 'use strict';
 
+let bunyan = require('bunyan');
+//log class will now globally available
+global.log = bunyan.createLogger({
+  name: 'citibike'
+});
+
 let path = require('path'),
   Lout = require('lout'),
   Good = require('good'),
   GoodFile = require('good-file'),
-  bunyan = require('bunyan'),
   q = require('q'),
   cron = require('./utilities/cron'),
   Hapi = require('hapi'),
   Inert = require('inert'),
   Vision = require('vision'),
   HapiSwagger = require('hapi-swagger'),
-  Pack = require('../package');
-
-
-
-//log clas will now globally available
-global.log = bunyan.createLogger({
-  name: 'citibike'
-});
-
-
-
+  Pack = require('../package'),
+  settings = require('./config/settings');
 /**
  * Construct the server
  */
@@ -44,7 +40,7 @@ log.info('server constructed');
 // port: config.port
 
 server.connection({
-  port: process.env.PORT || 3000
+  port: settings.port
 
 });
 //debug('added port: ', config.port);
@@ -59,7 +55,7 @@ server.register([Inert, Vision, {
   'register': HapiSwagger,
   'options': swaggerOptions
 }], function (err) {
-  err ? log.info("Inert or Vision plugin failed, it will stop swagger") : log.info("Inert or Vision plugin registered, it will start  swagger");
+  if (err) log.info("Inert or Vision plugin failed, it will stop swagger");
 });
 
 

@@ -25,6 +25,6 @@ let schema = new mongoose.Schema({
     loc: {
         type: [Number],
         index: '2dsphere'
-    },
+    }
 });
 module.exports = schema;

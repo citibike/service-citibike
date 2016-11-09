@@ -9,7 +9,6 @@ let mLabService = appEnv.getService('mongo_cb');
 
 let mLabServiceCredentials = function () {
     //** local testing **//
-
     if (mLabService == null) {
         log.error('mLabService not available, reading local hardcoded values');
         let dummyData = require('./notToCommit');
@@ -21,7 +20,6 @@ let mLabServiceCredentials = function () {
         log.info('mLabService  available, reading  service details');
     }
     return mLabService.credentials.uri;
-
 }
 
 let settings = {
@@ -32,7 +30,8 @@ let settings = {
     station_status: 'en/station_status.json',
     station_information: 'en/station_information.json',
     system_alerts: 'en/system_alerts.json',
-    mongoUrl: mLabServiceCredentials()
+    mongoUrl: mLabServiceCredentials(),
+    port: process.env.PORT || 3000
 }
 
 module.exports = settings;
